@@ -1,0 +1,32 @@
+{% extends 'user/base.html' %}
+
+{% block title %} 
+
+{% endblock title %}
+
+{% block content %} 
+{% load crispy_forms_tags %}
+<div class="d-flex justify-content-center align-items-center pt-5">
+
+    <div class="alert alert-success text-capitalize">
+        <h3>{{user.username}}'s profile</h3>
+    </div>
+    <div>
+            <h1>{{user.first_name}}</h1>
+            <h2>{{user.studentprofile.id}}id</h2>
+            <img src="{{ user.studentprofile.profile_picture.url}}" alt="pp">
+    </div>
+</div>
+<form  method="POST" enctype="multipart/form-data">
+    {%csrf_token%}
+
+    <fieldset class="form-group ">
+      <legend class = "border-bottom mb-4">profile info</legend>
+      {{u_form|crispy}}
+      {{p_form|crispy}}
+    </fieldset>
+       <fieldset class="form-group fill">
+      <input class="btn btn-primary dark " type="submit" value="Update">
+    </fieldset>
+  </form>
+{% endblock content %}

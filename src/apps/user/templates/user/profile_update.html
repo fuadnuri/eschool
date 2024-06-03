@@ -1,0 +1,30 @@
+{% extends 'user/base.html' %}
+{% block title %} 
+Register
+
+{%endblock title %}
+
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+<div class="d-flex justify-content-center align-items-center pt-5">
+    <form  method="POST">
+      {%csrf_token%}
+  
+      <fieldset class="form-group ">
+        <legend class = "border-bottom mb-4">Sign Up</legend>
+        {{u_form|crispy}}
+        {{p_form|crispy}}
+      </fieldset>
+      
+     
+  
+      <fieldset class="form-group fill">
+        <input class="btn btn-primary dark " type="submit" value="Sign Up">
+      </fieldset>
+    </form>
+  </div>
+
+  
+{% endblock %}

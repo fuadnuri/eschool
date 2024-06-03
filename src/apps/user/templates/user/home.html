@@ -1,0 +1,68 @@
+{% extends 'user/base.html' %}
+{% block title %}
+Home-eschool
+{%endblock%}
+
+{% block content %}
+<div class="pt-3 w-100">
+    <section class="py-4 text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">free courses road map</font></font></h1>
+                <p class="lead text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">A short description about the album below (its contents, origin, etc.). Keep it short and sweet, but not too short that people won't skip this album completely.</font></font></p>
+                <!-- <p>
+                  <a href="#" class="btn btn-primary my-2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">The main call to action</font></font></a>
+                  <a href="#" class="btn btn-secondary my-2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Secondary work</font></font></a>
+                </p> -->
+              </div>
+          
+        </div>
+      </section>
+
+    
+    <div>
+        <div class="w-100 px-lg-5 row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-3 justify-content-center">
+
+            <!-- <div class="grid"> -->
+                
+                {% for course in courses %} 
+                    <div class="col">
+
+                        <div class="card p-2 " style="width: 18rem; height: 28rem; ">
+                            <h5 class="card-title m-2 " style="height: 2rem;" >{{course.title}} </h5>
+                            <div class="card-body">
+                                <hr>
+                                <div class="h-5 mb-3 relative">
+                                    <img class="card-img-top " style="height:10rem" src="{{course.image.url}}" alt="Card image cap">
+                                    
+                                    <p class="card-text  ">{{course.descrtiption | truncatechars:100}}</p>
+                                </div>
+                            </div>
+                            <div class="d-flex p-2 justify-content-between absolute bottom-0">
+                                <h6>By:{{course.created_by}}</h6>
+                                <small>date: {{course.date_created |date}}</small>
+                            </div>
+                        </div>
+                    </div>
+                {%endfor%}
+            <!-- </div> -->
+        </div>
+        <!-- <div class="pagination">
+            <span class="step-links">
+                {% if courses.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ courses.previous_page_number }}">previous</a>
+                {% endif %}
+        
+                <span class="current">
+                    Page {{ courses.number }} of {{ courses.paginator.num_pages }}.
+                </span>
+        
+                {% if page_obj.has_next %}
+                    <a href="?page={{ courses.next_page_number }}">next</a>
+                    <a href="?page={{ courses.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span> -->
+        </div>
+</div>
+{% endblock %}

@@ -1,9 +1,0 @@
-# urls
-
-
-'''
-django urls here
-
-
-
-'''
