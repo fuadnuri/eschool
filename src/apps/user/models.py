@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+
 # from src.resources import models as resource_models
 
 
@@ -94,9 +95,3 @@ def create_user_profile(sender, instance, created, **kwargs):
 class TeacherProfile(models.Model):
     user = models.OneToOneField(Student, on_delete=models.CASCADE)
     profile_picture = models.ImageField()
-
-
-
-
-    
-

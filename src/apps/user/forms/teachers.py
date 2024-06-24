@@ -1,26 +1,27 @@
 from django import forms
+from ..models import (Teacher,TeacherProfile)
 from django.contrib.auth import forms as auth_form
-from .models import Student, StudentProfile
 
 
-class StudentRegistrationForm(auth_form.UserCreationForm):
+
+class TeacherCreationForm(auth_form.UserCreationForm):
 
     email = forms.EmailField()
 
     class Meta(auth_form.UserCreationForm.Meta):
-        model = Student
+        model = Teacher
         fields = ["username", "email", "password1", "password2"]
 
 
-class StudentChangeForm(forms.ModelForm):
+class TeacherChangeForm(forms.ModelForm):
     email = forms.EmailField()
 
     class Meta:
-        model = Student
+        model = Teacher
         fields = ["email", "first_name", "last_name"]
 
 
-class StudentProfileChangeForm(forms.ModelForm):
+class TeacherProfileChangeForm(forms.ModelForm):
     class Meta:
-        model = StudentProfile
+        model = TeacherProfile
         fields = ["profile_picture"]

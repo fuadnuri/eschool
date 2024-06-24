@@ -1,0 +1,71 @@
+{%extends 'user/base_dashboard.html' %} 
+{%block title %} teacher-dashboard {%endblock title%}
+
+{%block letfpanel%}
+
+    <ul class="list-group w-100" style="text-decoration: none; list-style: none;"
+    ><li class="py-2 text-capitalize w-100  my-2 border-0 rounded px-2 " ><div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle text-capitalize" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          my courses
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">create new</a></li>
+          <li><a class="dropdown-item" href="#">view courses</a></li>
+          <li><a class="dropdown-item" href="#">stats</a></li>
+        </ul>
+      </div></li>
+    <li class="py-2 text-capitalize w-100  my-2 border-0 rounded px-2"><div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle text-capitalize" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          my courses
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">create new</a></li>
+          <li><a class="dropdown-item" href="#">view courses</a></li>
+          <li><a class="dropdown-item" href="#">stats</a></li>
+        </ul>
+      </div></li>
+    <li class="py-2 text-capitalize w-100  my-2 border-0 rounded px-2"><div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle text-capitalize" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          my courses
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">create new</a></li>
+          <li><a class="dropdown-item" href="#">view courses</a></li>
+          <li><a class="dropdown-item" href="#">stats</a></li>
+        </ul>
+      </div></li>
+    <li ></li></ul>
+{%endblock letfpanel%}
+
+{%block section %}
+
+
+<div class="d-flex row">
+
+    <table class="table ">
+        <thead>
+            <tr>
+                <th scope="col">No</th>
+            <th scope="col">title</th>
+        <th scope="col">description</th>
+        <th scope="col">action</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for course in courses %}
+        <tr>
+                <th scope="row">{{course.id}}</th>
+            <td>{{course.title}}</td>
+            <td>{{course.descrtiption|truncatechars:100}}</td>
+            <td class="d-flex  justify-content-center ">
+                <button type="button" class="btn-lg mx-auto border border-0 bg-warning rounded">update</button>
+                <button type="button" class="btn-lg border border-0 bg-danger rounded">delete</button> 
+            </td>
+        </tr>    
+        {%endfor%}
+        </tbody>
+
+    </table>
+    <button type="button" class="justify-self-right w-25 border-0 rounded bg-success ">create new</button>
+</div>
+{%endblock section%}

@@ -1,0 +1,23 @@
+{%extends 'admin/custom_base.html'%}
+{%block content %} 
+
+<table class=" table">
+    <tr>
+        <th scope="col"> no</th>
+        <th scope="col"> title</th>
+        <th scope="col"> date created</th>
+        <th scope="col"> action</th>
+        
+    </th>
+    {% for course in courses %}
+    <tr>
+
+        <td scope="row">{{course.id}}</td>
+        <td>{{course.title}}</td>
+        <td>{{course.date_created| date}}</td>
+        <td> <div><button type="button" class="bg-warning border-0">edit</button> <button type="button" class="bg-danger border-0">delete</button></div></td>   
+    </tr>
+    {%endfor%}
+</table>
+
+{%endblock content%}

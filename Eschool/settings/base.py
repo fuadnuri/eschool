@@ -67,7 +67,13 @@ ROOT_URLCONF = "Eschool.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(
+            BASE_DIR,
+            'user/templates/user',
+            'user/templates/teacher',
+            'user/templates/student',
+            'user/templates/admin'
+        )],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -143,6 +149,7 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.TokenAuthentication",
     ],
 }
+
 LOGIN_REDIRECT_URL = "home"
 CRISPY_ALLOWED_TEMPLATE_PACK = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"

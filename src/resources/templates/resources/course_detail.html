@@ -27,7 +27,13 @@ Eschool-Courses
 
             
         </div>
+
         <div>
+            <form action="{% url 'my-courses' user.username %}" method="post">
+                {% csrf_token %}
+                <!-- <input type="button" value="Subscribe to {{course.title | truncatechars:30}}" class="btn btn-primary"> -->
+                <button type="submit" value="{{course.id}}" class="btn btn-primary">Subscribe to {{course.title}}</button>
+            </form>
             resources link and learning path
             {% if course_file is None %}
 
@@ -35,11 +41,14 @@ Eschool-Courses
             <h3>course file not populated</h3>
             {%else%}
             <ul>
-                <li>introduction to course</li>
-                <li>course tutorial link </li>
-                <li>practice resource link and mid project </li>
-                <li>diving deeper</li>
-                <li>final projects</li>
+                {% for file in course_file %}
+                    <li style="list-style: decimal; text-decoration: none;">
+                        <div>
+                            
+                            <a style="text-decoration: none; " href="{{file.link}}">{{file.title}}</a>
+                        </div>
+                    </li>
+                {%endfor%}
             </ul>
             {%endif%}
         </div>

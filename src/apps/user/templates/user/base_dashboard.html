@@ -1,0 +1,29 @@
+{%extends 'user/base.html' %}
+
+
+{%block title %}
+{% if title%}
+{{title}}
+{%else%}
+e-school
+{%endif%}
+{%endblock title %}
+
+
+
+{%block content %}
+
+<div class=" dashboard d-flex row " style="height: 80vh;">
+    <div class=" w-25 bg-while border-0 rounded-top bg-secondary border-right-1" >
+        {%block letfpanel %}
+
+        {%endblock letfpanel %} 
+    </div>
+    <div class="w-75 bg-light px-5">main section 
+        {%block section%}
+        {% endblock section %}
+    </div>
+</div>
+
+{% endblock content %}
+

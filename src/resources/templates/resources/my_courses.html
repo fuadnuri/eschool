@@ -1,0 +1,39 @@
+{% extends 'user/base.html' %}
+
+{%block title%}{%endblock title%}
+
+{%block content %}
+<div class="pt-2  mt-5 border border-top-2">
+
+        <div class="w-100 px-lg-5 row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-3 justify-content-center ">
+            
+            {% if courses%}
+        {% for course in courses %} 
+    <a href="{% url 'course-detail-view' course.id %}" class="nav-link col">
+        
+        <div class="card p-2 " style="width: 18rem; height: 28rem; ">
+            <h5 class="card-title m-2 " style="height: 2rem;" >{{course.title}} </h5>
+        <div class="card-body">
+            <hr>
+        <div class="h-5 mb-3 relative">
+            <img class="card-img-top " style="height:10rem" src="{{course.image.url}}" alt="Card image cap">
+        
+        <p class="card-text  ">{{course.descrtiption | truncatechars:100}}</p>
+    </div>
+    </div>
+    <div class="d-flex p-2 justify-content-between absolute bottom-0">
+        <h6>By:{{course.created_by}}</h6>
+    <small>date: {{course.date_created |date}}</small>
+    </div>
+
+    </div>
+    </a>
+    {% endfor %}
+    {%else%}
+    <div>
+        nothing found
+    </div>
+    {%endif%}
+    </div>
+    </div>
+{%endblock content%}

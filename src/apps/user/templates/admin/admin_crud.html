@@ -1,0 +1,25 @@
+{%extends 'admin/custom_base.html'%}
+
+{%block content%} 
+<div>
+    <table class=" table">
+        <tr>
+            <th scope="col"> no</th>
+            <th scope="col"> user-name</th>
+            <th scope="col"> email</th>
+            <th scope="col"> action</th>
+            
+        </th>
+        {% for user in users %}
+        <tr>
+    
+            <td scope="row">{{user.id}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.email}}</td>
+            <td> <div><button type="button" class="bg-warning border-0">edit</button> <button type="button" class="bg-danger border-0">delete</button></div></td>   
+        </tr>
+        {%endfor%}
+    </table>
+</div>
+
+{%endblock content%}

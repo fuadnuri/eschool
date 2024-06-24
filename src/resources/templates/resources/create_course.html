@@ -1,0 +1,25 @@
+{% extends 'user/base.html' %} 
+{%block title %}
+create-course
+{% endblock title%}
+
+{%block content %}
+{% load crispy_forms_tags %}
+<div class=" d-flex w-50  align-content-center justify-content-center ">
+    <form  method="POST" action="#" class="w-100" enctype='multipart/form-data' >
+        {% csrf_token%}
+        <fieldset class="form-group ">
+            <legend class = "border-bottom mb-4 w-50 align-items-center">Create A New Course</legend>
+            {{course_form|crispy}}
+          </fieldset>
+      
+          <fieldset class="form-group fill">
+            <input class="btn btn-primary dark " type="submit" value="Create">
+          </fieldset>
+    </form>
+</div>
+
+
+
+
+{% endblock content %}

@@ -8,8 +8,8 @@ Eschool-Courses
 {% block content %} 
 {% load crispy_forms_tags %}
  <div class="w-100">
-    {% csrf_token %}
-    <form class="d-flex px-lg-5 mx-auto py-lg-5 w-75 absolute mb-3  align-items-center px-auto" role="search">
+     <form class="d-flex px-lg-5 mx-auto py-lg-1 w-75 absolute mb-3  align-items-center px-auto" role="search" method="POST">
+        {% csrf_token %}
         <!-- <input id="course-search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
         <div class="w-100 " style="margin-right: 1rem;">
             {{form|crispy}}
@@ -17,35 +17,62 @@ Eschool-Courses
         <button class="btn btn-primary px-auto mx-auto mb-2 " style="margin-left: 1rem;"  type="submit">Search</button>
     </form>
     
-    <div class="w-100 px-lg-5 row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-3 justify-content-center">
-    {% if courses%}
-        {% for course in courses %} 
-        <a href="{% url 'course-detail-view' course.id %}" class="nav-link col">
-            
-            <div class="card p-2 " style="width: 18rem; height: 28rem; ">
-                <h5 class="card-title m-2 " style="height: 2rem;" >{{course.title}} </h5>
-                <div class="card-body">
-                    <hr>
-                    <div class="h-5 mb-3 relative">
-                        <img class="card-img-top " style="height:10rem" src="{{course.image.url}}" alt="Card image cap">
-                        
-                        <p class="card-text  ">{{course.descrtiption | truncatechars:100}}</p>
-                    </div>
-                </div>
-                <div class="d-flex p-2 justify-content-between absolute bottom-0">
-                    <h6>By:{{course.created_by}}</h6>
-                    <small>date: {{course.date_created |date}}</small>
-                </div>
+        <div class="w-100 px-lg-5 row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-3 justify-content-center">
+        {% if courses%}
+            {% for course in courses %} 
+            <a href="{% url 'course-detail-view' course.id %}" class="nav-link col">
                 
-            </div>
-        </a>
-        {% endfor %}
-    {%else%}
-    <div>
-        nothing found
+                <div class="card p-2 " style="width: 18rem; height: 28rem; ">
+                    <h5 class="card-title m-2 " style="height: 2rem;" >{{course.title}} </h5>
+                    <div class="card-body">
+                        <hr>
+                        <div class="h-5 mb-3 relative">
+                            <img class="card-img-top " style="height:10rem" src="{{course.image.url}}" alt="Card image cap">
+                            
+                            <p class="card-text  ">{{course.descrtiption | truncatechars:100}}</p>
+                        </div>
+                    </div>
+                    <div class="d-flex p-2 justify-content-between absolute bottom-0">
+                        <h6>By:{{course.created_by}}</h6>
+                        <small>date: {{course.date_created |date}}</small>
+                    </div>
+                    
+                </div>
+            </a>
+            {% endfor %}
+        {%else%}
+        <div>
+            nothing found
+        </div>
+        {%endif%}
     </div>
-    {%endif%}
-</div>
+
+    <nav aria-label="Page navigation example" class=" d-flex justify-content-center m-2">
+        <!-- <ul class="pagination">
+          <li class="page-item"><input type="button" value="previous" class="btn btn-lg btn-primary
+            btn btn-lg btn-primary" {{has_previous}} ></li>
+          <li class="page-item btn btn-lg btn-primary">{{page_num}} / {{total_page}}</li>
+          <li class="page-item"><input type="button" value="next" class="btn btn-lg btn-primary
+            btn btn-lg btn-primary"{{has_next}}></li>
+        </ul> -->
+        <div class="pagination">
+            <span class="step-links">
+                {% if courses.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ courses.previous_page_number }}">previous</a>
+                {% endif %}
+        
+                <span class="current ">
+                    Page {{ courses.number }} of {{ courses.paginator.num_pages }}.
+                </span>
+        
+                {% if courses.has_next %}
+                    <a href="?page={{ courses.next_page_number }}">next</a>
+                    <a href="?page={{ courses.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+      </nav>
  </div>
 
 {% endblock %}
